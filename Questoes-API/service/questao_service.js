@@ -12,8 +12,8 @@ function cadastrarQuestao(questao) {
     }
 }
 
-function buscarQuestaoId(id) {
-    const questao = questaoRepository.buscarQuestaoId(id);
+function buscarQuestaoPorId(id) {
+    const questao = questaoRepository.buscarQuestaoPorId(id);
     if(questao) {
         return questao;
     }
@@ -22,8 +22,8 @@ function buscarQuestaoId(id) {
     }
 }
 
-function buscarQuestaoDisciplina(disciplina) {
-    const questao = questaoRepository.buscarQuestaoDisciplina(disciplina);
+function buscarQuestaoPorDisciplina(disciplina) {
+    const questao = questaoRepository.buscarQuestaoPorDisciplina(disciplina);
     if(questao) {
         return questao;
     }
@@ -32,8 +32,8 @@ function buscarQuestaoDisciplina(disciplina) {
     }
 }
 
-function buscarQuestaoBanca(banca) {
-    const questao = questaoRepository.buscarQuestaoBanca(banca);
+function buscarQuestaoPorBanca(banca) {
+    const questao = questaoRepository.buscarQuestaoPorBanca(banca);
     if(questao) {
         return questao;
     }
@@ -42,8 +42,8 @@ function buscarQuestaoBanca(banca) {
     }
 }
 
-function buscarQuestaoBancaEAno(banca, ano) {
-    const questao = questaoRepository.buscarQuestaoBancaEAno(banca, ano);
+function buscarQuestaoPorBancaEAno(banca, ano) {
+    const questao = questaoRepository.buscarQuestaoPorBancaEAno(banca, ano);
     if(questao) {
         return questao;
     }
@@ -52,8 +52,8 @@ function buscarQuestaoBancaEAno(banca, ano) {
     }
 }
 
-function buscarQuestaoDisciplinaEBanca(disciplina, banca) {
-    const questao = questaoRepository.buscarQuestaoDisciplinaEBanca(disciplina, banca);
+function buscarQuestaoPorDisciplinaEBanca(disciplina, banca) {
+    const questao = questaoRepository.buscarQuestaoPorDisciplinaEBanca(disciplina, banca);
     if(questao) {
         return questao;
     }
@@ -63,7 +63,7 @@ function buscarQuestaoDisciplinaEBanca(disciplina, banca) {
 }
 
 function atualizarQuestao(id, questaoAtualizada) {
-    const questao = questaoRepository.buscarQuestaoId(id);
+    const questao = questaoRepository.buscarQuestaoPorId(id);
     if (!questao) {
       throw { id: 404, message: "Questão não encontrada" };
     }
@@ -74,90 +74,23 @@ function atualizarQuestao(id, questaoAtualizada) {
     }
   }
   
-function removerQuestaoId(id) {
-    const questao = questaoRepository.buscarQuestaoId(id);
+function removerQuestaoPorId(id) {
+    const questao = questaoRepository.buscarQuestaoPorId(id);
     if(!questao){
         throw {id: 404, message: "Questão nao encontrado"};
     }
-    questaoRepository.removerQuestaoId(id);
+    questaoRepository.removerQuestaoPorId(id);
 }
-
-function  gerarProvaAleatoriaCom10Questoes() {
-  let listaQuestoes = questaoRepository.listarQuestoes();
-  let prova = [];
-  let i = 0;
-  
-  while (i < 10) {
-    let questao = listaQuestoes[Math.floor(Math.random() * listaQuestoes.length)];
-    if (!prova.includes(questao)) {
-      prova.push(questao);
-      i++;
-    }
-  }
-  return prova;
-}
-
-function gerarProvaAleatoriaComNQuestoes(quantidadeDeQuestoes) {
-    let listaQuestoes = questaoRepository.listarQuestoes();
-    let prova = [];
-    let i = 0;
-    
-    while (i < quantidadeDeQuestoes) {
-        let questao = listaQuestoes[Math.floor(Math.random() * listaQuestoes.length)];
-        if (!prova.includes(questao)) {
-        prova.push(questao);
-        i++;
-        }
-    }
-    return prova;
-}
-
-function gerarProvaAleatoriaComNQuestoesDeUmaBanca(quantidadeDeQuestoes, banca) {
-    let listaQuestoes = questaoRepository.buscarQuestaoBanca(banca);
-    let prova = [];
-    let i = 0;
-    
-    while (i < quantidadeDeQuestoes) {
-        let questao = listaQuestoes[Math.floor(Math.random() * listaQuestoes.length)];
-        if (!prova.includes(questao)) {
-        prova.push(questao);
-        i++;
-        }
-    }
-    return prova;
-}
-
-function gerarProvaAleatoriaComNQuestoesDeUmaDisciplina(quantidadeDeQuestoes, disciplina) {
-    let listaQuestoes = questaoRepository.buscarQuestaoDisciplina(disciplina);
-    let prova = [];
-    let i = 0;
-    
-    while (i < quantidadeDeQuestoes) {
-        let questao = listaQuestoes[Math.floor(Math.random() * listaQuestoes.length)];
-        if (!prova.includes(questao)) {
-        prova.push(questao);
-        i++;
-        }
-    }
-    return prova;
-}
-
-
-
 
 
 module.exports = {
     listarQuestoes,
     cadastrarQuestao,
-    buscarQuestaoId,
-    buscarQuestaoDisciplina,
-    buscarQuestaoBanca,
-    buscarQuestaoBancaEAno,
-    buscarQuestaoDisciplinaEBanca,
+    buscarQuestaoPorId,
+    buscarQuestaoPorDisciplina,
+    buscarQuestaoPorBanca,
+    buscarQuestaoPorBancaEAno,
+    buscarQuestaoPorDisciplinaEBanca,
     atualizarQuestao,
-    removerQuestaoId,
-    gerarProvaAleatoriaCom10Questoes,
-    gerarProvaAleatoriaComNQuestoes,
-    gerarProvaAleatoriaComNQuestoesDeUmaBanca,
-    gerarProvaAleatoriaComNQuestoesDeUmaDisciplina
+    removerQuestaoPorId
 }

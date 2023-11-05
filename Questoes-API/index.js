@@ -4,6 +4,7 @@ const loginRouter = require('./router/login_router');
 const acessoMiddleware = require('./middleware/acesso_middleware');
 // Fim Login
 const questaoRouter = require('./router/questao_router');
+const provaRouter = require('./router/prova_router');
 const app = express();
 const port = 8000;
 
@@ -21,6 +22,7 @@ app.use(acessoMiddleware.verificarAcesso);
 // Fim Login
 
 app.use('/questoes', questaoRouter);
+app.use('/prova',provaRouter);
 
 
 app.listen(port, () => {

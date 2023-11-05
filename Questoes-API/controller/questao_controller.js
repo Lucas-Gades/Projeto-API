@@ -16,52 +16,52 @@ function cadastrarQuestao(req, res) {
     }
 }
 
-function buscarQuestaoId(req, res) {
+function buscarQuestaoPorId(req, res) {
     const id = parseInt(req.params.id);
     try{
-        const questao = questaoService.buscarQuestaoId(id);
+        const questao = questaoService.buscarQuestaoPorId(id);
         res.json(questao);
     } catch(err){
         res.status(err.id).json({msg:err.message});
     }
 }
 
-function buscarQuestaoDisciplina(req, res) {
+function buscarQuestaoPorDisciplina(req, res) {
     const disciplina = req.params.disciplina;
     try{
-        const questao = questaoService.buscarQuestaoDisciplina(disciplina);
+        const questao = questaoService.buscarQuestaoPorDisciplina(disciplina);
         res.json(questao);
     } catch(err){
         res.status(err.id).json({msg:err.message});
     }
 }
 
-function buscarQuestaoBanca(req, res) {
+function buscarQuestaoPorBanca(req, res) {
     const banca = req.params.banca;
     try{
-        const questao = questaoService.buscarQuestaoBanca(banca);
+        const questao = questaoService.buscarQuestaoPorBanca(banca);
         res.json(questao);
     } catch(err){
         res.status(err.id).json({msg:err.message});
     }
 }
 
-function buscarQuestaoBancaEAno(req, res) {
+function buscarQuestaoPorBancaEAno(req, res) {
     const banca = req.params.banca;
     const ano = parseInt(req.params.ano);
     try{
-        const questao = questaoService.buscarQuestaoBancaEAno(banca, ano);
+        const questao = questaoService.buscarQuestaoPorBancaEAno(banca, ano);
         res.json(questao);
     } catch(err){
         res.status(err.id).json({msg:err.message});
     }
 }
 
-function buscarQuestaoDisciplinaEBanca(req, res) {
+function buscarQuestaoPorDisciplinaEBanca(req, res) {
     const disciplina = req.params.disciplina;
     const banca = req.params.banca;
     try{
-        const questao = questaoService.buscarQuestaoDisciplinaEBanca(disciplina, banca);
+        const questao = questaoService.buscarQuestaoPorDisciplinaEBanca(disciplina, banca);
         res.json(questao);
     } catch(err){
         res.status(err.id).json({msg:err.message});
@@ -80,10 +80,10 @@ function atualizarQuestao(req, res) {
     }
 }
 
-function removerQuestaoId(req, res) {
+function removerQuestaoPorId(req, res) {
     const id = +req.params.id;
     try{
-        questaoService.removerQuestaoId(id);
+        questaoService.removerQuestaoPorId(id);
         res.json({msg:'Questão deletada com sucesso!'});
     } catch(err){
         res.status(err.id).json({msg:err.message});
@@ -91,63 +91,14 @@ function removerQuestaoId(req, res) {
 }
 
 
-function gerarProvaAleatoriaCom10Questoes(req, res) {
-    try {
-      const prova = questaoService.gerarProvaAleatoriaCom10Questoes();
-      res.json(prova);
-    } catch (err) {
-      res.status(err.id).json({ msg: err.message });
-    }
-  }
-
-function gerarProvaAleatoriaComNQuestoes(req, res) {
-    const quantidadeDeQuestoes = req.params.quantidade;
-  
-    try {
-      const prova = questaoService.gerarProvaAleatoriaComNQuestoes(quantidadeDeQuestoes); 
-      res.json(prova);
-    } catch (err) {
-      res.status(err.id).json({ msg: err.message });
-    }
-  }
-
-function gerarProvaAleatoriaComNQuestoesDeUmaBanca(req, res) {
-    const quantidadeDeQuestoes = req.params.quantidade;
-    const banca = req.params.banca;
-  
-    try {
-      const prova = questaoService.gerarProvaAleatoriaComNQuestoesDeUmaBanca(quantidadeDeQuestoes, banca);
-      res.json(prova);
-    } catch (err) {
-      res.status(err.id).json({ msg: err.message });
-    }
-  }
-  
-function gerarProvaAleatoriaComNQuestoesDeUmaDisciplina(req, res) {
-    const quantidadeDeQuestoes = req.params.quantidade;
-    const disciplina = req.params.disciplina;
-  
-    try {
-      const prova = questaoService.gerarProvaAleatoriaComNQuestoesDeUmaDisciplina(quantidadeDeQuestoes, disciplina);
-      res.json(prova);
-    } catch (err) {
-      res.status(err.id).json({ msg: err.message });
-    }
-  }
-  
-
 module.exports = {
     listarQuestoes,
     cadastrarQuestao,
-    buscarQuestaoId,
-    buscarQuestaoDisciplina,
-    buscarQuestaoBanca,
-    buscarQuestaoBancaEAno,
-    buscarQuestaoDisciplinaEBanca,
+    buscarQuestaoPorId,
+    buscarQuestaoPorDisciplina,
+    buscarQuestaoPorBanca,
+    buscarQuestaoPorBancaEAno,
+    buscarQuestaoPorDisciplinaEBanca,
     atualizarQuestao,
-    removerQuestaoId,
-    gerarProvaAleatoriaCom10Questoes,
-    gerarProvaAleatoriaComNQuestoes,
-    gerarProvaAleatoriaComNQuestoesDeUmaBanca,
-    gerarProvaAleatoriaComNQuestoesDeUmaDisciplina
+    removerQuestaoPorId
 }
