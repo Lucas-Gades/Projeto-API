@@ -1,5 +1,6 @@
 const express = require('express');
 const questaoRouter = require('./router/questao_router');
+const provaRouter = require('./router/prova_router');
 const app = express();
 const port = 8000;
 
@@ -11,6 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/questoes', questaoRouter);
+app.use('/prova',provaRouter);
 
 
 app.listen(port, () => {

@@ -226,7 +226,7 @@ const listaQuestoes = [{
 ]
 
 
-let idGerador = 1;
+let idGerador = 15;
 
 
 function listarQuestoes() {
@@ -239,13 +239,13 @@ function cadastrarQuestao(questao) {
   idGerador++;
 }
 
-function buscarQuestaoId(id) {
+function buscarQuestaoPorId(id) {
   return listaQuestoes.find(function (questao) {
     return (questao.id === id);
   })
 }
 
-function buscarQuestaoDisciplina(disciplina) {
+function buscarQuestaoPorDisciplina(disciplina) {
   return listaQuestoes.filter(
     (questao) => {
       return questao.disciplina.toUpperCase().includes(disciplina.toUpperCase());
@@ -253,7 +253,7 @@ function buscarQuestaoDisciplina(disciplina) {
   )
 }
 
-function buscarQuestaoBanca(banca) {
+function buscarQuestaoPorBanca(banca) {
   return listaQuestoes.filter(
     (questao) => {
       return questao.banca.toUpperCase().includes(banca.toUpperCase());
@@ -262,7 +262,7 @@ function buscarQuestaoBanca(banca) {
 }
 
 
-function buscarQuestaoBancaEAno(banca, ano) {
+function buscarQuestaoPorBancaEAno(banca, ano) {
   return listaQuestoes.filter(
     (questao) => {
       return questao.banca.toUpperCase().includes(banca.toUpperCase()) && questao.ano === ano;
@@ -270,7 +270,7 @@ function buscarQuestaoBancaEAno(banca, ano) {
   )
 }
 
-function buscarQuestaoDisciplinaEBanca(disciplina, banca) {
+function buscarQuestaoPorDisciplinaEBanca(disciplina, banca) {
   return listaQuestoes.filter(
     (questao) => {
       return questao.disciplina.toUpperCase().includes(disciplina.toUpperCase()) && questao.banca.toUpperCase().includes(banca.toUpperCase());
@@ -291,7 +291,7 @@ function atualizarQuestao(id, questao) {
 }
 
 
-function removerQuestaoId(id) {
+function removerQuestaoPorId(id) {
   for (let i in listaQuestoes) {
     if (listaQuestoes[i].id === id) {
       return listaQuestoes.splice(i, 1)[0];
@@ -303,11 +303,11 @@ function removerQuestaoId(id) {
 module.exports = {
   listarQuestoes,
   cadastrarQuestao,
-  buscarQuestaoId,
-  buscarQuestaoDisciplina,
-  buscarQuestaoBanca,
-  buscarQuestaoBancaEAno,
-  buscarQuestaoDisciplinaEBanca,
+  buscarQuestaoPorId,
+  buscarQuestaoPorDisciplina,
+  buscarQuestaoPorBanca,
+  buscarQuestaoPorBancaEAno,
+  buscarQuestaoPorDisciplinaEBanca,
   atualizarQuestao,
-  removerQuestaoId
+  removerQuestaoPorId
 };
