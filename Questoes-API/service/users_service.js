@@ -1,6 +1,6 @@
 const usuarioRepository = require('../repository/users_repository')
 
-// Listar todos os usuários
+// Listar todos os usuários , mas somente , nome , usuario e id
 function listarUsuarios() {
     return usuarioRepository.listarUsuarios();
 }

@@ -34,10 +34,15 @@ const listaDeUsuarios = [
 let idGerador = 1;
 
 
+// Listar todos os usuários , mas somente , nome , usuario e id
 function listarUsuarios() {
-    return listaDeUsuarios;
+    return listaDeUsuarios.map((usuario) => {
+        return {
+            id: usuario.id,
+            nome: usuario.nome,
+        }
+    });
 }
-
 
 
 function cadastrarUsuario(usuario) {
@@ -74,7 +79,7 @@ function buscarUsuarioId(id) {
     });
 }
 
-function buscarUsuarioPorUsername(username) {
+function buscarUsuarioPorUsuario(username) {
     return listaDeUsuarios.find((usuario) => {
         return usuario.usuario === username;
     });
@@ -87,5 +92,5 @@ module.exports = {
     atualizarUsuario,
     deletarUsuario,
     buscarUsuarioId,
-    buscarUsuarioPorUsername
+    buscarUsuarioPorUsuario
 };

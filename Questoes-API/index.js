@@ -3,10 +3,12 @@ const express = require('express');
 const loginRouter = require('./router/login_router');
 const acessoMiddleware = require('./middleware/acesso_middleware');
 
-
 const usuarioRouter = require('./router/users_router');
+
 const questaoRouter = require('./router/questao_router');
+
 const provaRouter = require('./router/prova_router');
+
 const app = express();
 const port = 8000;
 
@@ -18,9 +20,9 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/login', loginRouter);
+// app.use('/login', loginRouter);
 
-app.use(acessoMiddleware.verificarAcesso);
+// app.use(acessoMiddleware.verificarAcesso);
 
 
 app.use('/usuarios', usuarioRouter);
