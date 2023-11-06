@@ -38,7 +38,10 @@ function deletarUsuario(id) {
 function buscarUsuarioId(id) {
     const usuario = usuarioRepository.buscarUsuarioId(id);
     if(usuario) {
-        return usuario;
+        return {
+            id: usuario.id,
+            nome: usuario.nome,
+        }
     }
     else {
         throw {id:404, message:"Usuário nao encontrado"};

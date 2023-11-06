@@ -72,12 +72,13 @@ function deletarUsuario(id) {
 }
 
 
-
 function buscarUsuarioId(id) {
     return listaDeUsuarios.find((usuario) => {
-        return usuario.id === (id);
+        return usuario.id == id;
     });
 }
+
+
 
 function buscarUsuarioPorUsuario(username) {
     return listaDeUsuarios.find((usuario) => {
