@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const usersRepository = require('../repository/users_repository');
 
-const jwtSecret = 'YourSecretKey'; // Replace with your secret key
+const jwtSecret = 'Senac2023'; 
 
 function validarLogin(login) {
-    const usuario = usersRepository.buscarUsuarioPorUsername(login.usuario);
+    const usuario = usersRepository.buscarUsuarioPorUsuario(login.usuario);
 
     if (usuario && login.senha === usuario.senha) {
         const token = jwt.sign(

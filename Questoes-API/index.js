@@ -1,8 +1,8 @@
 const express = require('express');
-//Login
+
 const loginRouter = require('./router/login_router');
 const acessoMiddleware = require('./middleware/acesso_middleware');
-// Fim Login
+
 
 const usuarioRouter = require('./router/users_router');
 const questaoRouter = require('./router/questao_router');
@@ -17,11 +17,11 @@ app.get('/', (req, res) => {
 
 });
 
-//Login
+
 app.use('/login', loginRouter);
 
 app.use(acessoMiddleware.verificarAcesso);
-// Fim Login
+
 
 app.use('/usuarios', usuarioRouter);
 
