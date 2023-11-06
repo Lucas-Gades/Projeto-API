@@ -1,4 +1,4 @@
-const usersService = require('../service/usuario_service');
+const usersService = require('../service/users_service');
 
 
 function listarUsuarios(req, res) {
