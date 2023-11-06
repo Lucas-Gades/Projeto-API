@@ -279,15 +279,17 @@ function buscarQuestaoPorDisciplinaEBanca(disciplina, banca) {
 }
 
 function atualizarQuestao(id, questao) {
-  let questaoEncontrada = buscarQuestaoId(id);
-  if (questaoEncontrada != null) {
-    questaoEncontrada.descricao = questao.descricao;
-    questaoEncontrada.alternativas = questao.alternativas;
-    questaoEncontrada.correta = questao.correta;
-    questaoEncontrada.banca = questao.banca;
-    questaoEncontrada.ano = questao.ano;
-    questaoEncontrada.disciplina = questao.disciplina;
-  }
+      for(let ind in listaQuestoes){
+        if(listaQuestoes[ind].id == id){
+            listaQuestoes[ind].descricao = questao.descricao;
+            listaQuestoes[ind].alternativas = questao.alternativas;
+            listaQuestoes[ind].correta = questao.correta;
+            listaQuestoes[ind].banca = questao.banca;
+            listaQuestoes[ind].ano = questao.ano;
+            listaQuestoes[ind].disciplina = questao.disciplina;
+            return;
+        }
+      }
 }
 
 

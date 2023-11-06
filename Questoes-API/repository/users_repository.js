@@ -33,13 +33,12 @@ const listaDeUsuarios = [
 
 let idGerador = 1;
 
-//Listar Users
 
 function listarUsuarios() {
     return listaDeUsuarios;
 }
 
-//Cadastrar Usuário
+
 
 function cadastrarUsuario(usuario) {
     usuario.id = idGerador;
@@ -48,18 +47,15 @@ function cadastrarUsuario(usuario) {
 }
 
 function atualizarUsuario(id, usuario) {
-    let usuarioEncontrado = buscarUsuarioId(id);
-    if (usuarioEncontrado) {
-        usuarioEncontrado.nome = usuario.nome;
-        usuarioEncontrado.usuario = usuario.usuario;
-        usuarioEncontrado.senha = usuario.senha;
-        return usuarioEncontrado; // Retorne o usuário atualizado
-    } else {
-        return null; // Retorne null se o usuário não for encontrado
+    for(let ind in listaDeUsuarios){
+        if(listaDeUsuarios[ind].id == id){
+            listaDeUsuarios[ind].nome = usuario.nome;
+            listaDeUsuarios[ind].usuario = usuario.usuario;
+            listaDeUsuarios[ind].senha = usuario.senha;
+            return;
+        }
     }
 }
-
-//Deletar Usuário
 
 function deletarUsuario(id) {
     let usuarioEncontrado = buscarUsuarioId(id);
@@ -70,14 +66,13 @@ function deletarUsuario(id) {
     return usuarioEncontrado;
 }
 
-//Buscar Usuário por ID
+
 
 function buscarUsuarioId(id) {
     return listaDeUsuarios.find((usuario) => {
         return usuario.id === (id);
     });
 }
-//Buscar Usuário por Username
 
 function buscarUsuarioPorUsername(username) {
     return listaDeUsuarios.find((usuario) => {
