@@ -47,16 +47,16 @@ function cadastrarUsuario(usuario) {
     idGerador++;
 }
 
-//Atualizar Usuário
-
 function atualizarUsuario(id, usuario) {
     let usuarioEncontrado = buscarUsuarioId(id);
     if (usuarioEncontrado) {
         usuarioEncontrado.nome = usuario.nome;
         usuarioEncontrado.usuario = usuario.usuario;
         usuarioEncontrado.senha = usuario.senha;
+        return usuarioEncontrado; // Retorne o usuário atualizado
+    } else {
+        return null; // Retorne null se o usuário não for encontrado
     }
-    return usuarioEncontrado;
 }
 
 //Deletar Usuário
@@ -74,10 +74,9 @@ function deletarUsuario(id) {
 
 function buscarUsuarioId(id) {
     return listaDeUsuarios.find((usuario) => {
-        return usuario.id === id;
+        return usuario.id === (id);
     });
 }
-
 //Buscar Usuário por Username
 
 function buscarUsuarioPorUsername(username) {

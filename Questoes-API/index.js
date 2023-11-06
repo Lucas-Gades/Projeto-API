@@ -3,6 +3,8 @@ const express = require('express');
 const loginRouter = require('./router/login_router');
 const acessoMiddleware = require('./middleware/acesso_middleware');
 // Fim Login
+
+const usuarioRouter = require('./router/users_router');
 const questaoRouter = require('./router/questao_router');
 const provaRouter = require('./router/prova_router');
 const app = express();
@@ -20,6 +22,8 @@ app.use('/login', loginRouter);
 
 app.use(acessoMiddleware.verificarAcesso);
 // Fim Login
+
+app.use('/usuarios', usuarioRouter);
 
 app.use('/questoes', questaoRouter);
 app.use('/prova',provaRouter);
