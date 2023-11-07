@@ -341,14 +341,11 @@ function buscarProvaPorId(provaId) {
     listaProvasAleatoriasSalvas.push({ prova_id: prova.prova_id, questoes: prova }); 
     return prova;
 }
+
   function gerarProvaComNQuestoes(quantidadeDeQuestoes) {
-      let listaQuestoes = questaoRepository.listarQuestoes();
-      let i = 0;
-      let prova = [];
-      if(quantidadeDeQuestoes > listaQuestoes.length){
-          throw {id: 400, message: "Não há questões suficientes para gerar a prova"};
-      }
-      else{
+    let listaQuestoes = questaoRepository.listarQuestoes();
+    let prova = [];
+    let i = 0;
           while (i < quantidadeDeQuestoes) {
               let questao = listaQuestoes[Math.floor(Math.random() * listaQuestoes.length)];
               if (!prova.includes(questao)) {
@@ -357,7 +354,8 @@ function buscarProvaPorId(provaId) {
               }
           }
           return prova;
-      }
+          
+  
   }
   
   function gerarProvaComNQuestoesDeUmaBanca(quantidadeDeQuestoes, banca) {

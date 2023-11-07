@@ -20,9 +20,10 @@ function gerarProvaAleatoriaCom10Questoes(req, res) {
     }
   }
 
+
+
 function gerarProvaComNQuestoes(req, res) {
-    const quantidadeDeQuestoes = req.params.quantidade;
-  
+    const quantidadeDeQuestoes = parseInt(req.params.quantidade);
     try {
       const prova = provaService.gerarProvaComNQuestoes(quantidadeDeQuestoes); 
       res.json(prova);

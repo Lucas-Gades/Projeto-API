@@ -226,7 +226,7 @@ const listaQuestoes = [{
 ]
 
 
-let idGerador = 15;
+let idGerador = 16;
 
 
 function listarQuestoes() {
