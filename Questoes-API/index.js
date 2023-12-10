@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.use('/login', loginRouter);
 
-app.use(acessoMiddleware.verificarAcesso);
+// app.use(acessoMiddleware.verificarAcesso);
 
 
 app.use('/usuarios', usuarioRouter);
