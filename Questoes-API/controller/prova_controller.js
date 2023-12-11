@@ -1,9 +1,9 @@
 const provaService = require('../service/prova_service');
 
-function buscarProvaPorId(req, res) {
+async function buscarProvaPorId(req, res) {
   const id = parseInt(req.params.id);
   try{
-      const prova = provaService.buscarProvaPorId(id);
+      const prova = await provaService.buscarProvaPorId(id);
       res.json(prova);
   } catch(err){
       res.status(err.id).json({msg:err.message});
@@ -11,9 +11,9 @@ function buscarProvaPorId(req, res) {
 }
 
 
-function gerarProvaAleatoriaCom10Questoes(req, res) {
+async function gerarProvaAleatoriaCom10Questoes(req, res) {
     try {
-      const prova = provaService.gerarProvaAleatoriaCom10Questoes();
+      const prova = await provaService.gerarProvaAleatoriaCom10Questoes();
       res.json(prova);
     } catch (err) {
       res.status(err.id).json({ msg: err.message });
@@ -22,34 +22,34 @@ function gerarProvaAleatoriaCom10Questoes(req, res) {
 
 
 
-function gerarProvaComNQuestoes(req, res) {
+async function gerarProvaComNQuestoes(req, res) {
     const quantidadeDeQuestoes = parseInt(req.params.quantidade);
     try {
-      const prova = provaService.gerarProvaComNQuestoes(quantidadeDeQuestoes); 
+      const prova = await provaService.gerarProvaComNQuestoes(quantidadeDeQuestoes); 
       res.json(prova);
     } catch (err) {
       res.status(err.id).json({ msg: err.message });
     }
   }
 
-function gerarProvaComNQuestoesDeUmaBanca(req, res) {
+async function gerarProvaComNQuestoesDeUmaBanca(req, res) {
     const quantidadeDeQuestoes = req.params.quantidade;
     const banca = req.params.banca;
   
     try {
-      const prova = provaService.gerarProvaComNQuestoesDeUmaBanca(quantidadeDeQuestoes, banca);
+      const prova = await provaService.gerarProvaComNQuestoesDeUmaBanca(quantidadeDeQuestoes, banca);
       res.json(prova);
     } catch (err) {
       res.status(err.id).json({ msg: err.message });
     }
   }
   
-function gerarProvaComNQuestoesDeUmaDisciplina(req, res) {
+async function gerarProvaComNQuestoesDeUmaDisciplina(req, res) {
     const quantidadeDeQuestoes = req.params.quantidade;
     const disciplina = req.params.disciplina;
   
     try {
-      const prova = provaService.gerarProvaComNQuestoesDeUmaDisciplina(quantidadeDeQuestoes, disciplina);
+      const prova = await provaService.gerarProvaComNQuestoesDeUmaDisciplina(quantidadeDeQuestoes, disciplina);
       res.json(prova);
     } catch (err) {
       res.status(err.id).json({ msg: err.message });

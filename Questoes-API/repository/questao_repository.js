@@ -7,7 +7,7 @@ const conexao = {
     user: "postgres",
     password: "21312804"
 }
-
+ 
 async function listarQuestoes() {
   const client = new Client(conexao);
   await client.connect();
