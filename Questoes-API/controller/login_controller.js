@@ -1,15 +1,18 @@
-const loginService = require('../service/login_service')
+const loginService = require('../service/login_service');
 
-function realizarLogin(req,res){
+async function realizarLogin(req, res) {
     const login = req.body;
 
     try {
-        const token = loginService.validarLogin(login);
-        res.status(201).json({token:token})
-      }
-      catch(err) {        
-        res.status(err.id).json({msg: err.message});
-      }    
+        const token = await loginService.validarLogin(login);
+        if (token) {
+            res.status(200).json({ token: token });
+        } else {
+            res.status(401).json({ msg: 'Login falhou' });
+        }
+    } catch (err) {
+        res.status(err.id || 500).json({ msg: err.message || 'Erro' });
+    }
 }
 
 module.exports = { realizarLogin };

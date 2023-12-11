@@ -3,8 +3,8 @@ const usersRepository = require('../repository/users_repository');
 
 const jwtSecret = 'Senac2023'; 
 
-function validarLogin(login) {
-    const usuario = usersRepository.buscarUsuarioPorUsuario(login.usuario);
+async function validarLogin(login) {
+    const usuario = await usersRepository.buscarUsuarioPorUsuario(login.usuario);
 
     if (usuario && login.senha === usuario.senha) {
         const token = jwt.sign(

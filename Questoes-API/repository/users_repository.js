@@ -1,91 +1,39 @@
-const listaDeUsuarios = [
-    {
-        id: 1,
-        nome: 'Fulano 1',
-        usuario: 'fulano1',
-        senha: 'senha1'
-    },
-    {
-        id: 2,
-        nome: 'Ciclano 2',
-        usuario: 'ciclano2',
-        senha: 'senha2'
-    },
-    {
-        id: 3,
-        nome: 'Beltrano 3',
-        usuario: 'beltrano3',
-        senha: 'senha3'
-    },
-    {
-        id: 4,
-        nome: 'Usuário 4',
-        usuario: 'usuario4',
-        senha: 'senha4'
-    },
-    {
-        id: 5,
-        nome: 'Teste 5',
-        usuario: 'teste5',
-        senha: 'senha5'
-    }
-];
+const { Pool } = require('pg');
 
-let idGerador = 6;
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'questoesapi',
+    password: '359461',
+    port: 5432,
+});
 
-
-// Listar todos os usuários , mas somente , nome , usuario e id
-function listarUsuarios() {
-    return listaDeUsuarios.map((usuario) => {
-        return {
-            id: usuario.id,
-            nome: usuario.nome,
-        }
-    });
+async function listarUsuarios() {
+    const res = await pool.query('SELECT id, nome, usuario FROM usuarios');
+    return res.rows;
 }
 
-
-function cadastrarUsuario(usuario) {
-    usuario.id = idGerador;
-    listaDeUsuarios.push(usuario);
-    idGerador++;
+async function cadastrarUsuario(usuario) {
+    await pool.query('INSERT INTO usuarios (nome, usuario, senha) VALUES ($1, $2, $3)', [usuario.nome, usuario.usuario, usuario.senha]);
 }
 
-function atualizarUsuario(id, usuario) {
-    for(let ind in listaDeUsuarios){
-        if(listaDeUsuarios[ind].id == id){
-            listaDeUsuarios[ind].nome = usuario.nome;
-            listaDeUsuarios[ind].usuario = usuario.usuario;
-            listaDeUsuarios[ind].senha = usuario.senha;
-            return;
-        }
-    }
+async function atualizarUsuario(id, usuario) {
+    await pool.query('UPDATE usuarios SET nome = $1, usuario = $2, senha = $3 WHERE id = $4', [usuario.nome, usuario.usuario, usuario.senha, id]);
 }
 
-function deletarUsuario(id) {
-    let usuarioEncontrado = buscarUsuarioId(id);
-    if (usuarioEncontrado) {
-        let indiceUsuario = listaDeUsuarios.indexOf(usuarioEncontrado);
-        listaDeUsuarios.splice(indiceUsuario, 1);
-    }
-    return usuarioEncontrado;
+async function deletarUsuario(id) {
+    await pool.query('DELETE FROM usuarios WHERE id = $1', [id]);
 }
 
-
-function buscarUsuarioId(id) {
-    return listaDeUsuarios.find((usuario) => {
-        return usuario.id == id;
-    });
+async function buscarUsuarioId(id) {
+    const res = await pool.query('SELECT id, nome, usuario FROM usuarios WHERE id = $1', [id]);
+    return res.rows[0];
 }
 
-
-
-function buscarUsuarioPorUsuario(username) {
-    return listaDeUsuarios.find((usuario) => {
-        return usuario.usuario === username;
-    });
+async function buscarUsuarioPorUsuario(username) {
+    const res = await pool.query('SELECT * FROM usuarios WHERE usuario = $1', [username]);
+    return res.rows[0];
 }
-
 
 module.exports = {
     listarUsuarios,

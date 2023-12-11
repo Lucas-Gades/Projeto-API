@@ -1,53 +1,56 @@
 const usersService = require('../service/users_service');
 
-
-function listarUsuarios(req, res) {
+async function listarUsuarios(req, res) {
     try {
-        const users = usersService.listarUsuarios();
+        const users = await usersService.listarUsuarios();
         res.status(200).json(users);
     } catch (err) {
-        res.status(err.id).json({ msg: err.message });
+        res.status(err.id || 500).json({ msg: err.message || 'Erro ao listar usuários.' });
     }
 }
 
-function cadastrarUsuario(req, res) {
+async function cadastrarUsuario(req, res) {
     const user = req.body;
     try {
-        usersService.cadastrarUsuario(user);
-        res.status(201).json({ msg: "Usuário criado com sucesso" });
+        await usersService.cadastrarUsuario(user);
+        res.status(201).json({ msg: "Usuário criado com sucesso." });
     } catch (err) {
-        res.status(err.id).json({ msg: err.message });
+        res.status(err.id || 500).json({ msg: err.message || 'Erro ao cadastrar o usuário.' });
     }
 }
 
-function atualizarUsuario(req, res) {
+async function atualizarUsuario(req, res) {
     const id = req.params.id;
     const user = req.body;
     try {
-        usersService.atualizarUsuario(id, user);
-        res.status(200).json({ msg: "Usuário atualizado com sucesso" });
+        await usersService.atualizarUsuario(id, user);
+        res.status(200).json({ msg: "Usuário atualizado com sucesso." });
     } catch (err) {
-        res.status(err.id).json({ msg: err.message });
+        res.status(err.id || 500).json({ msg: err.message || 'Erro ao atualizar o usuário.' });
     }
 }
 
-function deletarUsuario(req, res) {
+async function deletarUsuario(req, res) {
     const id = parseInt(req.params.id);
     try {
-        usersService.deletarUsuario(id);
-        res.status(200).json({ msg: "Usuário deletado com sucesso" });
+        await usersService.deletarUsuario(id);
+        res.status(200).json({ msg: "Usuário deletado com sucesso." });
     } catch (err) {
-        res.status(err.id).json({ msg: err.message });
+        res.status(err.id || 500).json({ msg: err.message || 'Erro ao deletar o usuário.' });
     }
 }
 
-function buscarUsuarioId(req, res) {
+async function buscarUsuarioId(req, res) {
     const id = parseInt(req.params.id);
     try {
-        const user = usersService.buscarUsuarioId(id);
-        res.status(200).json(user);
+        const user = await usersService.buscarUsuarioId(id);
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ msg: "Usuário não encontrado." });
+        }
     } catch (err) {
-        res.status(err.id).json({ msg: err.message });
+        res.status(err.id || 500).json({ msg: err.message || 'Erro ao buscar o usuário.' });
     }
 }
 

@@ -1,42 +1,36 @@
 const usuarioRepository = require('../repository/users_repository')
 
-// Listar todos os usuários , mas somente , nome , usuario e id
-function listarUsuarios() {
-    return usuarioRepository.listarUsuarios();
+async function listarUsuarios() {
+    return await usuarioRepository.listarUsuarios();
 }
 
-// Cadastrar um usuário
-function cadastrarUsuario(usuario) {
+async function cadastrarUsuario(usuario) {
     if (usuario && usuario.nome && usuario.usuario && usuario.senha) {
-        usuarioRepository.cadastrarUsuario(usuario);
+        await usuarioRepository.cadastrarUsuario(usuario);
     } else {
-        throw { id: 400, message: "Usuário não possui nome, email ou senha" };
+        throw { id: 400, message: "Usuário não possui nome, usuário ou senha" };
     }
 }
 
-// Atualizar um usuário
-function atualizarUsuario(id, usuario) {
+async function atualizarUsuario(id, usuario) {
     if (usuario && usuario.nome && usuario.usuario && usuario.senha) {
-        return usuarioRepository.atualizarUsuario(id, usuario);
+        await usuarioRepository.atualizarUsuario(id, usuario);
     } else {
-        throw { id: 400, message: "Usuário não possui nome, email ou senha" };
+        throw { id: 400, message: "Usuário não possui nome, usuário ou senha" };
     }
 }
 
-// Deletar um usuário
-function deletarUsuario(id) {
-    const usuario = usuarioRepository.buscarUsuarioId(id);
+async function deletarUsuario(id) {
+    const usuario = await usuarioRepository.buscarUsuarioId(id);
     if (usuario) {
-        usuarioRepository.deletarUsuario(id);
+        await usuarioRepository.deletarUsuario(id);
     } else {
         throw { id: 404, message: "Usuário não encontrado" };
     }
 }
 
-
-// Buscar um usuário por ID
-function buscarUsuarioId(id) {
-    const usuario = usuarioRepository.buscarUsuarioId(id);
+async function buscarUsuarioId(id) {
+    const usuario = await usuarioRepository.buscarUsuarioId(id);
     if(usuario) {
         return {
             id: usuario.id,
@@ -44,7 +38,7 @@ function buscarUsuarioId(id) {
         }
     }
     else {
-        throw {id:404, message:"Usuário nao encontrado"};
+        throw {id: 404, message: "Usuário não encontrado"};
     }
 }
 
