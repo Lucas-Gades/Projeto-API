@@ -100,8 +100,9 @@ async function removerQuestaoPorId(id) {
   const client = new Client(conexao);
   await client.connect();
   const result = await client.query('DELETE FROM questao WHERE id = $1', [id]);
+  const questaoRemovida = result.rows[0];
   await client.end();
-  return result;
+  return questaoRemovida;
 
 }
 

@@ -10,4 +10,8 @@ async function verificarAcesso(req, res, next) {
   }
 }
 
+async function verificarAcessoAdm(req,res, next){
+
+}
+
 module.exports = { verificarAcesso };
