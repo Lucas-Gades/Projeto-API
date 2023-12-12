@@ -8,13 +8,6 @@ const conexao = {
     password: "21312804"
 }
 
-function conectar(){
-    const client = new Client(conexao);
-    client.connect();
-    return client;
-}
 
 
-module.exports = {
-    conectar,
-  };
+module.exports = conexao;

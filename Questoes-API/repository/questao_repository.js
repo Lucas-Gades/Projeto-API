@@ -1,13 +1,7 @@
 const {Client} = require('pg');
+const conexao  = require('../conexao')
 
-const conexao = {
-    host: "localhost",
-    port: 5432,
-    database: "api_questoes",
-    user: "postgres",
-    password: "21312804"
-}
- 
+
 async function listarQuestoes() {
   const client = new Client(conexao);
   await client.connect();
