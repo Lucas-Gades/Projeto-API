@@ -3,9 +3,9 @@ const {Client} = require('pg');
 const conexao = {
     host: "localhost",
     port: 5432,
-    database: "questoesapi",
+    database: "api_questoes",
     user: "postgres", 
-    password: "359461"
+    password: "21312804"
 }
 
 module.exports = conexao;
